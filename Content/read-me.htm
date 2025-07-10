@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Read Me: Reduce Image File Sizes in Flare</h1>
+        <p MadCap:conditions="read-me.internal">Build the read-me.fltar file to view these instructions in a readable format.</p>
+        <h2><a name="About"></a>About This Project</h2>
+        <p>This project contains Python scripts that you can use to reduce the file sizes of JPEG (.jpg and .jpeg) and PNG (.png) images in your Flare outputs. Reduce the file sizes of images in your outputs so that those images download faster for your users. This improves the performance of your outputs and can even help with search engine optimization (SEO).</p>
+        <p>The two Python scripts in this project use the <a href="https://tinify.com/developers">Tinify API</a> to reduce image file sizes:</p>
+        <ul>
+            <li>
+                <p>Use <code>reduce-file-sizes-source.py</code> to reduce files sizes of source images (in the <code>Content</code> folder of your project).</p>
+            </li>
+            <li>
+                <p>Use <code>reduce-file-sizes-output.py</code> to reduce file sizes of generated images in HTML outputs (in the <code>Output</code> folder of your project).</p>
+            </li>
+        </ul>
+        <h2>Set up the Python Scripts in Your Flare Projects</h2>
+        <p>To set up the Python scripts in your Flare projects, complete these four steps:</p>
+        <ol>
+            <li>
+                <MadCap:dropDown>
+                    <MadCap:dropDownHead>
+                        <MadCap:dropDownHotspot>Install Python on your computer (if it's not already installed).</MadCap:dropDownHotspot>
+                    </MadCap:dropDownHead>
+                    <MadCap:dropDownBody>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Go to <a href="https://www.python.org/downloads">python.org/downloads</a>.</p>
+                            </li>
+                            <li>
+                                <p>Click <strong>Download Python X.X.X</strong>, where X.X.X is the latest version of Python for Windows.</p>
+                            </li>
+                            <li>
+                                <p>Browse to and double-click the file your browser downloaded.</p>
+                            </li>
+                            <li>
+                                <p>Follow the on-screen instructions.</p>
+                            </li>
+                        </ol>
+                    </MadCap:dropDownBody>
+                </MadCap:dropDown>
+            </li>
+            <li>
+                <MadCap:dropDown>
+                    <MadCap:dropDownHead>
+                        <MadCap:dropDownHotspot>Install the Tinify Python module.</MadCap:dropDownHotspot>
+                    </MadCap:dropDownHead>
+                    <MadCap:dropDownBody>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Open the Windows command prompt. (In Windows 11, select <strong>Start &gt; All &gt;&#160;Terminal</strong>.)</p>
+                            </li>
+                            <li>
+                                <p>Type the following command at the prompt and press ENTER:</p>
+                                <MadCap:codeSnippet>
+                                    <MadCap:codeSnippetCopyButton />
+                                    <MadCap:codeSnippetBody MadCap:useLineNumbers="False" MadCap:lineNumberStart="1" MadCap:continue="False" xml:space="preserve">pip install --upgrade tinify</MadCap:codeSnippetBody>
+                                </MadCap:codeSnippet>
+                            </li>
+                        </ol>
+                    </MadCap:dropDownBody>
+                </MadCap:dropDown>
+            </li>
+            <li>
+                <MadCap:dropDown>
+                    <MadCap:dropDownHead>
+                        <MadCap:dropDownHotspot>Obtain an API key from Tinify.</MadCap:dropDownHotspot>
+                    </MadCap:dropDownHead>
+                    <MadCap:dropDownBody>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Go to <a href="https://tinify.com/developers">tinify.com/developers</a>.</p>
+                            </li>
+                            <li>
+                                <p>In the <strong>Name</strong> and <strong>Email Address</strong> boxes on the right side of the page, type your name and email address.</p>
+                            </li>
+                            <li>
+                                <p>Click <strong>Create API&#160;key</strong>.</p>
+                            </li>
+                            <li>
+                                <p>In the email you receive from Tinify, click <strong>Visit your dashboard</strong>.</p>
+                            </li>
+                            <li>
+                                <p>Under <strong>Available API keys</strong>, select and copy your API key.</p>
+                            </li>
+                            <li>
+                                <p>Paste the API key in a text file or other safe place on your computer.</p>
+                            </li>
+                        </ol>
+                    </MadCap:dropDownBody>
+                </MadCap:dropDown>
+            </li>
+            <li>
+                <MadCap:dropDown>
+                    <MadCap:dropDownHead>
+                        <MadCap:dropDownHotspot>Import the Python scripts from this project into your Flare projects.</MadCap:dropDownHotspot>
+                    </MadCap:dropDownHead>
+                    <MadCap:dropDownBody>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Open your project in Flare.</p>
+                            </li>
+                            <li>
+                                <p>In the Project Organizer panel, browse to <code>Project\Imports</code>.</p>
+                            </li>
+                            <li>
+                                <p>Right click the <code>Imports</code> folder, and select <strong>Add Flare Project Import File</strong>.</p>
+                            </li>
+                            <li>
+                                <p>In the <strong>File Name</strong> box, type an appropriate name for the import file.</p>
+                            </li>
+                            <li>
+                                <p>Click <strong>Add</strong>.</p>
+                            </li>
+                            <li>
+                                <p>Set up the import file:</p>
+                                <table style="width: 100%;">
+                                    <col style="width: 25%;" />
+                                    <col style="width: 75%;" />
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <p>Control</p>
+                                            </th>
+                                            <th>
+                                                <p>Procedure</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p>Source Project</p>
+                                            </td>
+                                            <td>
+                                                <p>Click <strong>Browse</strong>, browse to and select the <code>reduce-file-sizes.flprj</code> file, and click <strong>Open</strong>.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p>Include files</p>
+                                            </td>
+                                            <td>
+                                                <p>Select <strong>All Files (*.*)</strong>.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p>Import Conditions</p>
+                                            </td>
+                                            <td>
+                                                <p>Click <strong>Edit</strong>, select the <strong>reduce-file-sizes.reduce-file-sizes</strong> row, select the <strong>Include</strong> option button, click <strong>OK</strong>, and select <strong>Auto-Exclude Non-Tagged Files</strong>.</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>The import file should look similar to this:</p>
+                                <p>
+                                    <img src="Resources/Images/import-python-scripts.png" alt="MadCap Flare project import file set up to import the Python scripts" class="landscape800 border" />
+                                </p>
+                            </li>
+                            <li>
+                                <p>Save the changes and click <strong>Import</strong>.</p>
+                            </li>
+                            <li>
+                                <p>Open all HTML targets in your Flare project and exclude the reduce-file-sizes.reduce-file-sizes condition so that the Python scripts aren't included in those targets' outputs.</p>
+                            </li>
+                        </ol>
+                    </MadCap:dropDownBody>
+                </MadCap:dropDown>
+            </li>
+        </ol>
+        <h2>Choose which Python Script to Use</h2>
+        <p>As noted in <MadCap:xref href="#About">About This Project</MadCap:xref>, this project contains two Python scripts that you can use to reduce the file sizes of images:</p>
+        <table style="width: 100%;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Use <code>reduce-file-sizes-source.py</code> if:</p>
+                    </th>
+                    <th>
+                        <p>Use <code>reduce-file-sizes-output.py</code> if:</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Your Flare project contains many images.</p>
+                    </td>
+                    <td>
+                        <p>Your Flare project contains only a few images.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>You build outputs frequently.</p>
+                    </td>
+                    <td>
+                        <p>You build outputs only as needed.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>You rarely modify images after inserting them in your Flare project.</p>
+                    </td>
+                    <td>
+                        <p>You frequently modify images after inserting them in your Flare project.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>You build PDF and other outputs in addition to HTML outputs.</p>
+                    </td>
+                    <td>
+                        <p>You build only HTML outputs.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Limiting Images You Send to the Tinify API</h2>
+        <p>The free account you create when you obtain an API key from Tinify allows you to use the service to reduce the file sizes of up to 500 images per month. To reduce the file sizes of more than 500 images per month, you need to <a href="https://tinify.com/developers/pricing" target="_blank">upgrade your account</a>.</p>
+        <p>For this reason, you might want to limit the images you send to the Tinify API&#160;through the Python scripts.</p>
+        <p>The Python scripts include features that limit the images they send to the Tinify API:</p>
+        <ul>
+            <li>
+                <p>When you first run the <code>reduce-file-sizes-source.py</code> script, it sends all images in your project's <code>Content</code> folder that match your defined criteria to the  Tinify API. When your run the script subsequent times, it sends only those images that were added since you last ran the script. It will not send existing images even if they were modified since the last time the script was run.</p>
+                <p><strong>Note:</strong> To send all images to the Tinify API after you first run the script, delete the <code>Content\Resources\Python\reduce-file-sizes-log.json</code> file.</p>
+            </li>
+            <li>
+                <p> The <code>reduce-file-sizes-output.py</code> script does not include images from the <code>Skins</code> folders in HTML outputs. (These images come from the skins you apply to outputs.)</p>
+            </li>
+        </ul>
+        <p>You can further limit the images the scripts send to the Tinify API using these techniques:</p>
+        <table style="width: 100%;">
+            <col style="width: 40%;" />
+            <col style="width: 60%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Technique</p>
+                    </th>
+                    <th>
+                        <p>Example</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Set a minimum file size (in megabytes) for images to be sent to the Tinify API</p>
+                    </td>
+                    <td>
+                        <p>If you set the minimum file size to 1 MB, the scripts will send the first three images to the Tinify API, but not the last one.</p>
+                        <p>
+                            <img src="Resources/Images/filter-by-file-size.png" class="border" alt="Four images, one of which will not be sent to the Tinify API because it is smaller than the specified minimim file size" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Specify one or more folders that contain images that should not be sent to the Tinify API</p>
+                    </td>
+                    <td>
+                        <p>If you exclude the Draft folder, the scripts will not send the one image in that folder to the Tinify API.</p>
+                        <p>
+                            <img src="Resources/Images/filter-by-folder.png" class="border" alt="Five images, one of which will not be sent to the Tinify API because it is in a folder that is flagged to be excluded" />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Use <code>reduce-file-sizes-source.py</code> to Reduce Source Image File Sizes</h2>
+        <p>You can run the <code>reduce-file-sizes-source.py</code> script from the Windows Command Prompt outside of Flare or from the Pre-Build Event Command in any outputs' target file. The first option is best if you only want to run the script once (or at most a few times during the development cycle). The second option is best if you want to run the script every time you build an output.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Run the <code>reduce-file-sizes-source.py</code> script from the Windows Command Prompt</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>
+                        <p>In the Content Explorer panel, browse to <code>Content\Resources\Python</code>.</p>
+                    </li>
+                    <li>
+                        <p>Right-click the <code>Python</code> folder and select <strong>Open Folder in&#160;Windows</strong>.</p>
+                    </li>
+                    <li>
+                        <p>In the File&#160;Explorer window that appears, hold down the SHIFT&#160;key, right-click in an empty space, and select <strong>Open in Terminal</strong>, <strong>Open in command window here</strong>, or <strong>Open PowerShell window here</strong>.</p>
+                    </li>
+                    <li>
+                        <p>In the command prompt window that appears, type the following command:</p>
+                        <MadCap:codeSnippet>
+                            <MadCap:codeSnippetCopyButton />
+                            <MadCap:codeSnippetBody MadCap:useLineNumbers="False" MadCap:lineNumberStart="1" MadCap:continue="False" xml:space="preserve">python reduce-file-sizes-source.py {Parameters}</MadCap:codeSnippetBody>
+                        </MadCap:codeSnippet>
+                        <MadCap:snippetBlock src="Resources/Snippets/parameters.flsnp" MadCap:conditionTagExpression="exclude[read-me.output-parameter]" />
+                        <p>This example command will reduce the file sizes of all images in the project's <code>Content</code> folder that are at least 2.5 MB in size except for images in folders named <code>internal</code> or <code>draft</code>.</p>
+                        <MadCap:codeSnippet>
+                            <MadCap:codeSnippetCopyButton />
+                            <MadCap:codeSnippetBody MadCap:useLineNumbers="False" MadCap:lineNumberStart="1" MadCap:continue="False" xml:space="preserve">python reduce-file-sizes-source.py --key xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --minsize 2.5 --exclude internal,draft</MadCap:codeSnippetBody>
+                        </MadCap:codeSnippet>
+                    </li>
+                    <li>
+                        <p>Press ENTER.</p>
+                        <p>The Python script runs. Any errors appear in the command prompt window.</p>
+                        <MadCap:snippetBlock src="Resources/Snippets/json-log.flsnp" />
+                    </li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Run the <code>reduce-file-sizes-source.py</code> script from the Pre-Build Event Command</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>
+                        <p>In the Project Organizer panel, browse to and open the target file for which you want to run the script.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Build Events</strong>.</p>
+                    </li>
+                    <li>
+                        <p>In the <strong>Pre-Build Event Command</strong> box, type the following commands:</p>
+                        <MadCap:codeSnippet>
+                            <MadCap:codeSnippetCopyButton />
+                            <MadCap:codeSnippetBody MadCap:useLineNumbers="False" MadCap:lineNumberStart="1" MadCap:continue="False" xml:space="preserve">cd $(ProjectDirectory)\Content\Resources\Python
+python reduce-file-sizes-source.py --key {Parameters}</MadCap:codeSnippetBody>
+                        </MadCap:codeSnippet>
+                        <MadCap:snippetBlock src="Resources/Snippets/parameters.flsnp" MadCap:conditionTagExpression="exclude[read-me.output-parameter]" />
+                        <p>These example commands will reduce the file sizes of all images in the project's <code>Content</code> folder that are at least 2.5 MB in sizeexcept for images in folders named <code>internal</code> or <code>draft</code>.</p>
+                        <MadCap:codeSnippet>
+                            <MadCap:codeSnippetCopyButton />
+                            <MadCap:codeSnippetBody MadCap:useLineNumbers="False" MadCap:lineNumberStart="1" MadCap:continue="False" xml:space="preserve">cd $(ProjectDirectory)\Content\Resources\Python
+python reduce-file-sizes-source.py --key xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --minsize 2.5 --exclude internal,draft</MadCap:codeSnippetBody>
+                        </MadCap:codeSnippet>
+                    </li>
+                    <li>
+                        <p>Save the file.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Build</strong>.</p>
+                        <p>Flare runs the Python script and the builds the output. Any errors appear in the target file's build log.</p>
+                        <MadCap:snippetBlock src="Resources/Snippets/json-log.flsnp" />
+                    </li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Use <code>reduce-file-sizes-output.py</code> to Reduce HTML Output Image File Sizes</h2>
+        <p>You can run the <code>reduce-file-sizes-output.py</code> script from the Post-Build Event Command in HTML outputs' target files.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Run the <code>reduce-file-sizes-output.py</code> script from the Post-Build Event Command</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>
+                        <p>In the Project Organizer panel, browse to and open the target file for which you want to run the script.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Build Events</strong>.</p>
+                    </li>
+                    <li>
+                        <p>In the <strong>Post-Build Event Command</strong> box, type the following commands:</p>
+                        <MadCap:codeSnippet>
+                            <MadCap:codeSnippetCopyButton />
+                            <MadCap:codeSnippetBody MadCap:useLineNumbers="False" MadCap:lineNumberStart="1" MadCap:continue="False" xml:space="preserve">cd $(ProjectDirectory)\Content\Resources\Python
+python reduce-file-sizes-output.py --key {Parameters}</MadCap:codeSnippetBody>
+                        </MadCap:codeSnippet>
+                        <MadCap:snippetBlock src="Resources/Snippets/parameters.flsnp" />
+                        <p>These example commands will reduce the file sizes of all images  in the target file's output that are at least 2.5 MB in size except for images in folders named <code>internal</code> or <code>draft</code>.</p>
+                        <MadCap:codeSnippet>
+                            <MadCap:codeSnippetCopyButton />
+                            <MadCap:codeSnippetBody MadCap:useLineNumbers="False" MadCap:lineNumberStart="1" MadCap:continue="False" xml:space="preserve">cd $(ProjectDirectory)\Content\Resources\Python
+python reduce-file-sizes-output.py --key xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --output $(OutputDirectory) --minsize 2.5 --exclude internal,draft</MadCap:codeSnippetBody>
+                        </MadCap:codeSnippet>
+                    </li>
+                    <li>
+                        <p>Save the file.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Build</strong>.</p>
+                        <p>Flare builds the output and runs the Python script. Any errors appear in the target file's build log.</p>
+                        <MadCap:snippetBlock src="Resources/Snippets/json-log.flsnp" />
+                    </li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Questions or Comments</h2>
+        <p>You can connect with me through <a href="https://www.linkedin.com/in/kenschatzke">LinkedIn</a>.</p>
+    </body>
+</html>

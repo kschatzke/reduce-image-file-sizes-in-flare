@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultConditionTagSet
+  conditions="reduce-file-sizes.reduce-file-sizes">
+  <ConditionTag
+    BackgroundColor="#00bfff"
+    Name="reduce-file-sizes"
+    Comment="" />
+</CatapultConditionTagSet>

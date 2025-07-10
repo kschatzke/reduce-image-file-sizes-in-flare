@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="MadCap HTML5 Target"
+  Type="WebHelp2"
+  Destinations=""
+  ShowMadCapBacklink="true"
+  GlossaryTermConversion="marked"
+  ResolveCssVariables="true"
+  PreCompileScaledImages="false"
+  ConditionTagExpression="exclude[reduce-file-sizes.reduce-file-sizes]"
+  ContentInclusionType="Referenced">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true"
+    OutputFormat="doc" />
+  <PostBuild>cd $(ProjectDirectory)\Content\Resources\Python
+python reduce-file-sizes-output.py --key {Enter Tinify API key here} --output $(OutputDirectory)</PostBuild>
+</CatapultTarget>

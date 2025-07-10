@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="MadCap HTML5 Target"
+  Type="WebHelp2"
+  Destinations=""
+  ShowMadCapBacklink="true"
+  GlossaryTermConversion="marked"
+  ResolveCssVariables="true"
+  PreCompileScaledImages="false"
+  ConditionTagExpression="exclude[read-me.internal or reduce-file-sizes.reduce-file-sizes]"
+  ContentInclusionType="Referenced"
+  MasterToc="/Project/TOCs/read-me.fltoc"
+  Skin="(none)">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true"
+    OutputFormat="doc" />
+  <PostBuild></PostBuild>
+  <PreBuild></PreBuild>
+</CatapultTarget>

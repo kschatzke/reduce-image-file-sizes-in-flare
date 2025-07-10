@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <p>Where <code>{Parameters}</code> are the parameters you want to pass to the script:</p>
+        <table style="width: 100%;">
+            <col style="width: 15%;" />
+            <col style="width: 22.5%;" />
+            <col style="width: 22.5%;" />
+            <col style="width: 30%;" />
+            <col style="width: 10%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Parameter</p>
+                    </th>
+                    <th>
+                        <p>Value</p>
+                    </th>
+                    <th>
+                        <p>Notes</p>
+                    </th>
+                    <th>
+                        <p>Example</p>
+                    </th>
+                    <th>
+                        <p>Required</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><code>--key</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>The API key you obtained from Tinify.</p>
+                    </td>
+                    <td>
+                        <p>N/A</p>
+                    </td>
+                    <td>
+                        <p><code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="read-me.output-parameter">
+                    <td>
+                        <p><code>--output</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p><code>$(OutputDirectory)</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Do not provide any other value than <code>$(OutputDirectory)</code>.</p>
+                    </td>
+                    <td>
+                        <p><code>$(OutputDirectory)</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><code>--minsize</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>The minimum size (in megabytes<MadCap:footnote>1 megabyte = 1,024 kilobytes = 1,048,576 bytes</MadCap:footnote>) for the script to send an image to the Tinify API.</p>
+                    </td>
+                    <td>
+                        <p>The value should contain numbers and decimal points only. Any other text (for example, <code>2.5MB</code>) will result in an error.</p>
+                    </td>
+                    <td>
+                        <p><code>2.5</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><code>--exclude</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>The names of any folders in the project containing images you don't want the script to send to the Tinify API.</p>
+                    </td>
+                    <td>
+                        <p>Separate folder names with commas (<code>,</code>).</p>
+                    </td>
+                    <td>
+                        <p><code>internal,draft</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
